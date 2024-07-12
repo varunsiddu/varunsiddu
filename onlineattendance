@@ -1,0 +1,53 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class AttendanceTracker {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HashMap<String, String> attendance = new HashMap<>();
+
+        while (true) {
+            System.out.println("nAttendance Tracker");
+            System.out.println("1. Mark Present");
+            System.out.println("2. Mark Absent");
+            System.out.println("3. View Attendance");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter student name: ");
+                    String name = scanner.nextLine();
+                    attendance.put(name, "Present");
+                    System.out.println(name + " marked Present.");
+                    break;
+                case 2:
+                    System.out.print("Enter student name: ");
+                    name = scanner.nextLine();
+                    attendance.put(name, "Absent");
+                    System.out.println(name + " marked Absent.");
+                    break;
+                case 3:
+                    if (attendance.isEmpty()) {
+                        System.out.println("No attendance records yet.");
+                    } else {
+                        System.out.println("nAttendance:");
+                        for (String student : attendance.keySet()) {
+                            System.out.println(student + ": " + attendance.get(student));
+                        }
+                    }
+                    break;
+                case 4:
+                    System.out.println("Exiting program.");
+                    scanner.close();
+                    return; // Exit the program
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
